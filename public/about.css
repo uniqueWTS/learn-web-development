@@ -9,7 +9,7 @@
 }
 
 #webpack-intro {
+	max-width: 100%;
 	width: 100%;
-	max-wdith: 100%;
 	display: block;
 }

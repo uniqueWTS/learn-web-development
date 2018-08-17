@@ -10,20 +10,22 @@
 var path = require('path'); // nodejs core module
 var HTMLWebpackPlugin = require('html-webpack-plugin');//html-dom
 var cleanWebpackPlugin = require('clean-webpack-plugin'); //clean before rebuild
+var miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	// 开发模式
-	mode: 'development',
+	// mode: 'development',
 	// 入口文件
 	// entry: './index.js',
 	entry: {
 		home: './index.js',
-		about:'./about.js'
+		about:'./about.js',
 	},
 	// 输出目录和输出文件名称
 	output: {
 		path: path.resolve(__dirname, 'site'),
-		filename: 'public/[name].bundle.js'
+		filename: './public/[name].bundle.js'/*,
+		publicPath: './public'*/
 	},
 	// 插件
 	plugins: [
@@ -36,7 +38,7 @@ module.exports = {
 			title: "Home",
 			filename: "index.html",
 			template: "public/index.html",
-			inject: "head",
+			inject: "body",
 			chunks: ['home']
 		}),
 		new HTMLWebpackPlugin({ 
@@ -45,12 +47,23 @@ module.exports = {
 			template: "public/about.html",
 			inject: "body",
 			chunks: ['about']
+		}),
+		new miniCssExtractPlugin({
+			filename: './public/[name].css',
+			chunkFilename: './public/[id].css'
 		})
 	],
 	// 模块转换
 	module: {
 		rules: [
-			{ test: /\.css$/, use: ['style-loader', 'css-loader'] }
+			{ 
+				test: /\.css$/, 
+				use: [
+				{
+					loader: miniCssExtractPlugin.loader
+				}, 
+				'css-loader'] 
+			}
 		]
 	}
 };
