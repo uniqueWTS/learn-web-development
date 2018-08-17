@@ -1,0 +1,15 @@
+
+
+.wrapper {
+	width: 90%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#webpack-intro {
+	width: 100%;
+	max-wdith: 100%;
+	display: block;
+}
