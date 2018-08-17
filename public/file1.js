@@ -1,5 +1,5 @@
 var greet = function () {
-	document.write("Welcome to Webpack!");
+	document.write("<p>Welcome to Webpack!<p>");
 }
 
 module.exports = greet; // 模块接口

@@ -23,5 +23,11 @@ module.exports = {
 	// 插件
 	plugins: [
 		new HTMLWebpackPlugin({ template : './index.html' })
-	]
+	],
+	// 模块转换
+	module: {
+		rules: [
+			{ test: /\.css$/, use: ['style-loader', 'css-loader'] }
+		]
+	}
 };
