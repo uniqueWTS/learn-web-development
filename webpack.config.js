@@ -8,7 +8,8 @@
  * 插件: 数组 
  */
 var path = require('path'); // nodejs core module
-var HTMLWebpackPlugin = require('html-webpack-plugin');
+var HTMLWebpackPlugin = require('html-webpack-plugin');//html-dom
+var cleanWebpackPlugin = require('clean-webpack-plugin'); //clean before rebuild
 
 module.exports = {
 	// 开发模式
@@ -26,6 +27,11 @@ module.exports = {
 	},
 	// 插件
 	plugins: [
+		new cleanWebpackPlugin(['site'],{
+			root: __dirname,
+		  verbose:  true,
+		  dry:      false
+		}),
 		new HTMLWebpackPlugin({
 			title: "Home",
 			filename: "index.html",
